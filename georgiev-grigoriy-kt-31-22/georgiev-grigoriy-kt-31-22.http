@@ -1,0 +1,6 @@
+@georgiev_grigoriy_kt_31_22_HostAddress = http://localhost:5176
+
+GET {{georgiev_grigoriy_kt_31_22_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
