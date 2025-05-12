@@ -1,3 +1,7 @@
+using georgiev_grigoriy_kt_31_22.Database;
+using georgiev_grigoriy_kt_31_22.Interfaces;
+using georgiev_grigoriy_kt_31_22.Middlewares;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 
@@ -15,6 +19,13 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddScoped<INagruzkaService, NagruzkaService>();
+
+    builder.Services.AddDbContext<CafedraDbContext>(optinos =>
+    optinos.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddDbContext<CafedraDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     var app = builder.Build();
 
@@ -25,6 +36,8 @@ try
         app.UseSwaggerUI();
     }
 
+    app.UseMiddleware<ExceptionHandlerMiddleware>();
+
     app.UseAuthorization();
 
     app.MapControllers();
@@ -32,7 +45,7 @@ try
     app.Run();
 }
 
-catch(Exception ex)
+catch (Exception ex)
 {
     logger.Error(ex, "Stopped program because of exception");
 }
