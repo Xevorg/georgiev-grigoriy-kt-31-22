@@ -6,8 +6,9 @@ namespace georgiev_grigoriy_kt_31_22.Database
 {
     public class CafedraDbContext : DbContext
     {
-        DbSet<Cafedra> Cafedras { get; set; }
-        DbSet<Prepods> Prepods { get; set; }
+        public DbSet<Cafedra> Cafedras { get; set; }
+        public DbSet<Prepods> Prepods { get; set; }
+        public DbSet<Disciplines> Disciplines { get; set; }
         public DbSet<Nagruzka> Nagruzki { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

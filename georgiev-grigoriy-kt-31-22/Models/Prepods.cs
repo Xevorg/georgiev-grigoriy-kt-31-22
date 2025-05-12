@@ -14,8 +14,5 @@
 
         public int PositionId { get; set; }
         public Positions Positions { get; set; }
-
-        //public int CafedraId { get; set; }
-        //public Cafedra Cafedra { get; set; }
     }
 }

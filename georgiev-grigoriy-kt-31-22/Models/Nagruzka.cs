@@ -10,8 +10,6 @@
         public int PrepodId { get; set; }
         public Prepods Prepod { get; set; }
 
-        //public int CafedraId { get; set; }
-
         public int totalHours { get; set; }
 
     }

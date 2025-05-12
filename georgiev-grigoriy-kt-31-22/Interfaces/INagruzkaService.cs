@@ -2,8 +2,8 @@
 {
     public interface INagruzkaService
     {
-        Result AddNagruzka(NagruzkaRequest nagruzkaRequest);
-        Result UpdateNagruzka(int id, NagruzkaRequest nagruzkaRequest);
-        Result DeleteNagruzka(int id);
+        Task<Result> AddNagruzka(NagruzkaRequest nagruzkaRequest);
+        Task<Result> UpdateNagruzka(int id, NagruzkaRequest nagruzkaRequest);
+        Task<Result> DeleteNagruzka(int id);
     }
 }

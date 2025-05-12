@@ -12,7 +12,7 @@ namespace georgiev_grigoriy_kt_31_22.Interfaces
             _context = context;
         }
 
-        public Result AddNagruzka(NagruzkaRequest nagruzkaRequest)
+        public async Task<Result> AddNagruzka(NagruzkaRequest nagruzkaRequest)
         {
             var nagruzka = new Nagruzka
             {
@@ -22,37 +22,41 @@ namespace georgiev_grigoriy_kt_31_22.Interfaces
             };
 
             _context.Nagruzki.Add(nagruzka);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return new Result { Success = true };
+            return new Result { Success = true, Message = "Nagruzka was added", Id = nagruzka.Id };
         }
 
-        public Result UpdateNagruzka(int id, NagruzkaRequest nagruzkaRequest)
+        public async Task<Result> UpdateNagruzka(int id, NagruzkaRequest nagruzkaRequest)
         {
-            var nagruzka = _context.Nagruzki.Find(id);
+            var nagruzka = await _context.Nagruzki.FindAsync(id);
             if (nagruzka == null)
-                return new Result { Success = false, Message = "Nagruzka not found." };
+                return new Result { Success = false, Message = "Nagruzka not found" };
 
             nagruzka.DisciplineId = nagruzkaRequest.DisciplineId;
             nagruzka.PrepodId = nagruzkaRequest.PrepodId;
             nagruzka.totalHours = nagruzkaRequest.totalHours;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return new Result { Success = true };
         }
 
-        public Result DeleteNagruzka(int id)
+        public async Task<Result> DeleteNagruzka(int id)
         {
-            var nagruzka = _context.Nagruzki.Find(id);
+            var nagruzka = await _context.Nagruzki.FindAsync(id);
             if (nagruzka == null)
-                return new Result { Success = false, Message = "Nagruzka not found." };
+                return new Result { Success = false, Message = "Nagruzka not found" };
 
             _context.Nagruzki.Remove(nagruzka);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return new Result { Success = true };
         }
     }
+
+
+
+
 
 }

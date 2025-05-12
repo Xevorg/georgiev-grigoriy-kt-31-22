@@ -12,11 +12,11 @@ namespace georgiev_grigoriy_kt_31_22.Controllers
             _nagruzkaService = nagruzkaService;
         }
 
-        // POST api/nagruzka/add
+        // POST
         [HttpPost("add")]
-        public IActionResult AddNagruzka([FromBody] NagruzkaRequest nagruzkaRequest)
+        public async Task<IActionResult> AddNagruzka([FromBody] NagruzkaRequest nagruzkaRequest)
         {
-            var result = _nagruzkaService.AddNagruzka(nagruzkaRequest);
+            var result = await _nagruzkaService.AddNagruzka(nagruzkaRequest);
             if (result.Success)
             {
                 return Ok(result);
@@ -25,11 +25,11 @@ namespace georgiev_grigoriy_kt_31_22.Controllers
             return BadRequest(result.Message);
         }
 
-        // PUT api/nagruzka/update/5
+        // PUT
         [HttpPut("update")]
-        public IActionResult UpdateNagruzka(int id, [FromBody] NagruzkaRequest nagruzkaRequest)
+        public async Task<IActionResult> UpdateNagruzka(int id, [FromBody] NagruzkaRequest nagruzkaRequest)
         {
-            var result = _nagruzkaService.UpdateNagruzka(id, nagruzkaRequest);
+            var result = await _nagruzkaService.UpdateNagruzka(id, nagruzkaRequest);
             if (result.Success)
             {
                 return Ok(result);
@@ -38,11 +38,11 @@ namespace georgiev_grigoriy_kt_31_22.Controllers
             return BadRequest(result.Message);
         }
 
-        // DELETE api/nagruzka/delete/5
+        // DELETE
         [HttpDelete("delete")]
-        public IActionResult DeleteNagruzka(int id)
+        public async Task<IActionResult> DeleteNagruzka(int id)
         {
-            var result = _nagruzkaService.DeleteNagruzka(id);
+            var result = await _nagruzkaService.DeleteNagruzka(id);
             if (result.Success)
             {
                 return Ok(result);
