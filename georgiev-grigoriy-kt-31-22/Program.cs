@@ -20,6 +20,7 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
     builder.Services.AddScoped<INagruzkaService, NagruzkaService>();
+    builder.Services.AddScoped<IDisciplineService, DisciplineService>();
 
     builder.Services.AddDbContext<CafedraDbContext>(optinos =>
     optinos.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
